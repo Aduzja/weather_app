@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/helpers/constants.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key, required this.title});
@@ -18,7 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.blue, Colors.white],
+            colors: [
+              Constants.colorMatisse,
+              Constants.colorOldLavender,
+              Constants.colorTapestry
+            ],
           ),
         ),
         child: Stack(
