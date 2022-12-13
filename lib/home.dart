@@ -10,6 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var _currentIndex = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,22 +31,25 @@ class _HomePageState extends State<HomePage> {
           child: Column(children: const []),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: const [
-        BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.temperatureLow,
-              size: 30,
-              color: Colors.black87,
-            ),
-            label: "Temperature"),
-        BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.star,
-              size: 30,
-              color: Colors.black87,
-            ),
-            label: "Quality")
-      ]),
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) => setState(() => _currentIndex = index),
+          currentIndex: _currentIndex,
+          items: const [
+            BottomNavigationBarItem(
+                icon: FaIcon(
+                  FontAwesomeIcons.temperatureLow,
+                  size: 30,
+                  color: Colors.black87,
+                ),
+                label: "Temperature"),
+            BottomNavigationBarItem(
+                icon: FaIcon(
+                  FontAwesomeIcons.star,
+                  size: 30,
+                  color: Colors.black87,
+                ),
+                label: "Quality")
+          ]),
     );
   }
 }
