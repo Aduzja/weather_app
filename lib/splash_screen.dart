@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/helpers/constants.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:weather_app/permission_page.dart';
+import 'package:weather_app/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key, required this.title});
@@ -13,6 +16,30 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
+    Future.delayed(
+      const Duration(seconds: 2),
+      () => {
+        if (havePermission())
+          {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PermissionPage(title: widget.title),
+              ),
+            ),
+          }
+        else
+          {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePage(),
+              ),
+            ),
+          }
+      },
+    );
+
     return Scaffold(
       body: DecoratedBox(
         decoration: const BoxDecoration(
@@ -34,13 +61,13 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.wb_cloudy_outlined,
-                    color: Colors.white,
+                  const FaIcon(
+                    FontAwesomeIcons.rainbow,
                     size: 50,
+                    color: Colors.white,
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Text(
                     widget.title,
@@ -65,13 +92,12 @@ class _SplashScreenState extends State<SplashScreen> {
             Positioned(
               left: 0,
               right: 0,
-              bottom: 60,
+              bottom: 120,
               child: Container(
                 alignment: Alignment.center,
                 child: const Text(
                   'Ładowanie danych... proszę czekać',
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 10, fontFamily: 'Raleway'),
+                  style: TextStyle(color: Colors.white, fontSize: 12),
                 ),
               ),
             )
@@ -79,5 +105,9 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+
+  havePermission() {
+    return true;
   }
 }

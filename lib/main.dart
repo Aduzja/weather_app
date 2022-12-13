@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(title: _title),
+      home: const SplashScreen(title: 'Weather App'),
+      // SplashScreen(title: _title),
     );
   }
 }
