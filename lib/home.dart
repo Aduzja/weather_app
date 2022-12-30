@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/helpers/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:weather_app/quality_screen.dart';
+import 'package:weather_app/temperature_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,42 +11,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var _currentIndex = 1;
+  var _currentIndex = 0;
+  final screens = const [
+    TemperatureScreen(title: 'fds'),
+    QualityScreen(title: 'fdsfdsfdsf'),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Constants.colorMatisse,
-              Constants.colorOldLavender,
-              Constants.colorTapestry
-            ],
-          ),
-        ),
-        child: Center(
-          child: Column(children: const []),
-        ),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
           onTap: (index) => setState(() => _currentIndex = index),
           currentIndex: _currentIndex,
           items: const [
             BottomNavigationBarItem(
                 icon: FaIcon(
                   FontAwesomeIcons.temperatureLow,
-                  size: 30,
+                  size: 25,
                   color: Colors.black87,
                 ),
                 label: "Temperature"),
             BottomNavigationBarItem(
                 icon: FaIcon(
                   FontAwesomeIcons.star,
-                  size: 30,
+                  size: 25,
                   color: Colors.black87,
                 ),
                 label: "Quality")
