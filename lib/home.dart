@@ -13,8 +13,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var _currentIndex = 0;
   final screens = const [
-    TemperatureScreen(title: 'fds'),
-    QualityScreen(title: 'fdsfdsfdsf'),
+    TemperatureScreen(title: ''),
+    QualityScreen(title: ''),
   ];
 
   @override

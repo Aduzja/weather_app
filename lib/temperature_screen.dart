@@ -47,9 +47,9 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                   const Text(
                     'Monday 31.12, 12:00',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: 'Raleway'),
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   const Padding(
@@ -57,9 +57,9 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                     child: Text(
                       'SUNNY',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontFamily: 'Raleway'),
+                        color: Colors.white,
+                        fontSize: 15,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -70,7 +70,6 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 55,
-                        fontFamily: 'RobotoMono',
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -82,7 +81,6 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
-                        fontFamily: 'RobotoMono',
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -104,7 +102,6 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
-                                  fontFamily: 'RobotoMono',
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -115,7 +112,6 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 22,
-                                    fontFamily: 'RobotoMono',
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -138,7 +134,6 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
-                                  fontFamily: 'RobotoMono',
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -149,7 +144,6 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 22,
-                                    fontFamily: 'RobotoMono',
                                   ),
                                   textAlign: TextAlign.center,
                                 ),

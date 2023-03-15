@@ -57,9 +57,9 @@ class _PermissionPageState extends State<PermissionPage> {
                   const Text(
                     'Sprawdź temperaturę\noraz jakość powietrza',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontFamily: 'Raleway'),
+                      color: Colors.white,
+                      fontSize: 15,
+                    ),
                   ),
                 ],
               ),
@@ -74,9 +74,9 @@ class _PermissionPageState extends State<PermissionPage> {
                     textAlign: TextAlign.center,
                     'Potrzebujemy do tego Twojej przybliżonej lokalizacji',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontFamily: 'Raleway'),
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
                   ),
                   const SizedBox(
                     height: 14,
