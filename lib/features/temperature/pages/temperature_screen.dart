@@ -58,7 +58,18 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                       'SUNNY',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 15,
+                        fontSize: 24,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      'WARSZAWA',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
                       ),
                       textAlign: TextAlign.center,
                     ),

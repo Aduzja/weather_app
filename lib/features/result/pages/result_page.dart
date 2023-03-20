@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:weather_app/quality_screen.dart';
-import 'package:weather_app/temperature_screen.dart';
+import 'package:weather_app/features/quality/pages/quality_screen.dart';
+import 'package:weather_app/features/temperature/pages/temperature_screen.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ResultPage extends StatefulWidget {
+  const ResultPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ResultPage> createState() => _ResultPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ResultPageState extends State<ResultPage> {
   var _currentIndex = 0;
   final screens = const [
     TemperatureScreen(title: ''),
