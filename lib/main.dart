@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/home.dart';
+import 'package:weather_app/features/home/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,17 +8,14 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  final String _title = 'Weather App';
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
       theme: ThemeData(
+        useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
       home: const HomePage(),
-      // SplashScreen(title: _title),
     );
   }
 }

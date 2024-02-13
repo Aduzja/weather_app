@@ -46,9 +46,9 @@ class _QualityScreenState extends State<QualityScreen> {
                   Text(
                     widget.title,
                     style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontFamily: 'Raleway'),
+                      color: Colors.white,
+                      fontSize: 30,
+                    ),
                   ),
                   const SizedBox(
                     height: 60,
@@ -56,9 +56,9 @@ class _QualityScreenState extends State<QualityScreen> {
                   const Text(
                     'Sprawdź temperaturę\noraz jakość powietrza',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontFamily: 'Raleway'),
+                      color: Colors.white,
+                      fontSize: 15,
+                    ),
                   ),
                 ],
               ),

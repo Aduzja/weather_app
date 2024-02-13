@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/features/location/pages/location_page.dart';
 import 'package:weather_app/helpers/constants.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:weather_app/home.dart';
+import 'package:weather_app/widgets/logo.dart';
 
-class PermissionPage extends StatefulWidget {
-  const PermissionPage({super.key, required this.title});
-
-  final String title;
+class HomePage extends StatefulWidget {
+  const HomePage({
+    super.key,
+  });
 
   @override
-  State<PermissionPage> createState() => _PermissionPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _PermissionPageState extends State<PermissionPage> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,31 +35,17 @@ class _PermissionPageState extends State<PermissionPage> {
               alignment: FractionalOffset.center,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const FaIcon(
-                    FontAwesomeIcons.rainbow,
-                    size: 50,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    widget.title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                    ),
-                  ),
-                  const SizedBox(
+                children: const [
+                  Logo(),
+                  SizedBox(
                     height: 60,
                   ),
-                  const Text(
+                  Text(
                     'Sprawdź temperaturę\noraz jakość powietrza',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontFamily: 'Raleway'),
+                      color: Colors.white,
+                      fontSize: 15,
+                    ),
                   ),
                 ],
               ),
@@ -72,18 +58,18 @@ class _PermissionPageState extends State<PermissionPage> {
                 children: [
                   const Text(
                     textAlign: TextAlign.center,
-                    'Potrzebujemy do tego Twojej przybliżonej lokalizacji',
+                    'Potrzebujemy do tego Twojej lokalizacji',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontFamily: 'Raleway'),
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
                   ),
                   const SizedBox(
                     height: 14,
                   ),
                   Container(
                     alignment: Alignment.center,
-                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    margin: const EdgeInsets.symmetric(horizontal: 70),
                     child: SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -98,11 +84,14 @@ class _PermissionPageState extends State<PermissionPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomePage(),
+                              builder: (context) => LocationPage(),
                             ),
                           );
                         },
-                        child: const Text('Zaczynamy'),
+                        child: const Text(
+                          'Zaczynamy',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
