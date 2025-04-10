@@ -11,7 +11,7 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  final double _opacity = 1.0;
+  final double opacity = 1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +55,11 @@ class _WeatherPageState extends State<WeatherPage> {
             ),
             const Text('Perceived 10°C', style: TextStyle(fontSize: 18, color: Colors.white70)),
             const SizedBox(height: 80),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Column(
-                  children: const [
+                  children: [
                     Icon(Icons.speed, color: Colors.white, size: 30), // Ciśnienie
                     SizedBox(height: 6),
                     Text('Pressure', style: TextStyle(color: Colors.white)),
@@ -68,7 +68,7 @@ class _WeatherPageState extends State<WeatherPage> {
                   ],
                 ),
                 Column(
-                  children: const [
+                  children: [
                     Icon(Icons.air, color: Colors.white, size: 30), // Wiatr
                     SizedBox(height: 6),
                     Text('Wind', style: TextStyle(color: Colors.white)),
@@ -77,7 +77,7 @@ class _WeatherPageState extends State<WeatherPage> {
                   ],
                 ),
                 Column(
-                  children: const [
+                  children: [
                     Icon(Icons.water_drop, color: Colors.white, size: 30), // Opady
                     SizedBox(height: 6),
                     Text('Precipitation', style: TextStyle(color: Colors.white)),
@@ -86,7 +86,7 @@ class _WeatherPageState extends State<WeatherPage> {
                   ],
                 ),
                 Column(
-                  children: const [
+                  children: [
                     Icon(Icons.wb_sunny, color: Colors.white, size: 30), // UV Index
                     SizedBox(height: 6),
                     Text('UV Index', style: TextStyle(color: Colors.white)),
