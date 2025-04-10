@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
 class GradientBackground extends StatelessWidget {
-  final Color startColor;
-  final Color endColor;
   final Widget child;
+  final Gradient gradient;
 
   const GradientBackground({
     super.key,
-    required this.startColor,
-    required this.endColor,
     required this.child,
+    required this.gradient,
   });
 
   @override
@@ -18,11 +16,7 @@ class GradientBackground extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [startColor, endColor],
-        ),
+        gradient: gradient,
       ),
       child: child,
     );

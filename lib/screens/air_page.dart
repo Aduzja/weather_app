@@ -1,42 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/screens/home_page.dart';
-import 'package:weather_app/screens/permission_page.dart';
 import 'package:weather_app/widgets/app_gradients.dart';
 
-import 'dart:async';
 
 import 'package:weather_app/widgets/gradient_background.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class AirPage extends StatefulWidget {
+  const AirPage({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _AirPageState createState() => _AirPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _AirPageState extends State<AirPage> {
   double _opacity = 1.0;
-
-  @override
-  void initState() {
-    super.initState();
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (!mounted) return;
-      setState(() {
-        _opacity = _opacity == 1.0 ? 0.3 : 1.0;
-      });
-    });
-
-    Future.delayed(const Duration(seconds: 3), () {
-      bool isLocationEnabled;
-      isLocationEnabled = true;
-
-      if (isLocationEnabled) {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-      }
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const PermissionPage()));
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Weather',
+              'Air Quality',
               style: TextStyle(fontSize: 32, color: Colors.white, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),

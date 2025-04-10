@@ -1,42 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/screens/home_page.dart';
-import 'package:weather_app/screens/permission_page.dart';
 import 'package:weather_app/widgets/app_gradients.dart';
 
-import 'dart:async';
 
 import 'package:weather_app/widgets/gradient_background.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class WeatherPage extends StatefulWidget {
+  const WeatherPage({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _WeatherPageState createState() => _WeatherPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _WeatherPageState extends State<WeatherPage> {
   double _opacity = 1.0;
 
-  @override
-  void initState() {
-    super.initState();
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (!mounted) return;
-      setState(() {
-        _opacity = _opacity == 1.0 ? 0.3 : 1.0;
-      });
-    });
-
-    Future.delayed(const Duration(seconds: 3), () {
-      bool isLocationEnabled;
-      isLocationEnabled = true;
-
-      if (isLocationEnabled) {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-      }
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const PermissionPage()));
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
