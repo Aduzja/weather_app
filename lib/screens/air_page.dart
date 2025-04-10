@@ -12,7 +12,7 @@ class AirPage extends StatefulWidget {
 }
 
 class _AirPageState extends State<AirPage> {
-  double _opacity = 1.0;
+  final double _opacity = 1.0;
 
   @override
   Widget build(BuildContext context) {

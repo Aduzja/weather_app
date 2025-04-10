@@ -12,7 +12,7 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  double _opacity = 1.0;
+  final double _opacity = 1.0;
 
 
   @override
