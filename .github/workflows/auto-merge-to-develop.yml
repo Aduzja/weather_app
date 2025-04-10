@@ -26,5 +26,5 @@ jobs:
         run: |
           git fetch origin develop
           git checkout develop
-          git merge --no-ff ${{ github.ref_name }}
+          git merge --no-ff --allow-unrelated-histories ${{ github.ref_name }}
           git push origin develop
