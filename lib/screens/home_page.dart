@@ -23,11 +23,12 @@ class _HomePageState extends State<HomePage> {
         index: _currentIndex,
         children: screens,
       ),
-      
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.cloud), label: 'Weather', backgroundColor: Color(0xFF3B3F80)),
-          BottomNavigationBarItem(icon: Icon(Icons.air), label: 'Air Quality', backgroundColor: Color(0xFF3B3F80)),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.cloud_outlined), label: 'Weather', backgroundColor: Color(0xFF3B3F80)),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.eco_outlined), label: 'Air Quality', backgroundColor: Color(0xFF3B3F80)),
         ],
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
