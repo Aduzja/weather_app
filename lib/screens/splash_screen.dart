@@ -1,9 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:weather_app/screens/home_page.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:weather/weather.dart';
 import 'package:weather_app/screens/permission_page.dart';
 import 'package:weather_app/widgets/app_gradients.dart';
-
-import 'dart:async';
 
 import 'package:weather_app/widgets/gradient_background.dart';
 
@@ -15,28 +16,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  double _opacity = 1.0;
-
-  @override
-  void initState() {
-    super.initState();
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (!mounted) return;
-      setState(() {
-        _opacity = _opacity == 1.0 ? 0.3 : 1.0;
-      });
-    });
-
-    Future.delayed(const Duration(seconds: 3), () {
-      bool isLocationEnabled;
-      isLocationEnabled = true;
-
-      if (isLocationEnabled) {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-      }
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const PermissionPage()));
-    });
-  }
+  double opacity = 1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             const Spacer(),
             AnimatedOpacity(
-              opacity: _opacity,
+              opacity: opacity,
               duration: const Duration(seconds: 1),
               child: const Padding(
                 padding: EdgeInsets.only(bottom: 30),
@@ -83,5 +63,32 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (permissionDenied()) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const PermissionPage(),
+        ),
+      );
+    } else {
+      SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+        executeOnceAfterBuildComplete();
+      });
+    }
+  }
+
+  bool permissionDenied() {
+    return false;
+  }
+
+  void executeOnceAfterBuildComplete() async {
+    WeatherFactory wf = WeatherFactory("acfdca911f9abe472b02a8761030a9ae");
+    Weather weather = await wf.currentWeatherByCityName("Warsaw");
+    log(weather.toString() as num);
   }
 }
