@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/screens/home_page.dart' show HomePage;
-import 'package:weather_app/screens/splash_screen.dart' show SplashScreen;
+import 'config/routes/app_routes.dart';
+import 'config/theme/app_theme.dart';
+import 'core/constants/app_constants.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class WeatherApp extends StatelessWidget {
+  const WeatherApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const SplashScreen(),
-        '/home': (context) => const HomePage(),
-      },
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      initialRoute: AppRoutes.home,
+      onGenerateRoute: AppRoutes.generateRoute,
     );
   }
 }
