@@ -28,7 +28,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
       } on ServerException catch (e) {
         return Left(ServerFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure('Unexpected error occurred'));
+        return const Left(ServerFailure('Unexpected error occurred'));
       }
     } else {
       try {
@@ -49,10 +49,10 @@ class WeatherRepositoryImpl implements WeatherRepository {
       } on ServerException catch (e) {
         return Left(ServerFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure('Unexpected error occurred'));
+        return const Left(ServerFailure('Unexpected error occurred'));
       }
     } else {
-      return Left(NetworkFailure('No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -66,7 +66,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
       } on ServerException catch (e) {
         return Left(ServerFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure('Unexpected error occurred'));
+        return const Left(ServerFailure('Unexpected error occurred'));
       }
     } else {
       try {

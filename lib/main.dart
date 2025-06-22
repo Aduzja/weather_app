@@ -1,6 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/app.dart' show MyApp;
+import 'package:flutter/services.dart';
+import 'app.dart';
+import 'injection_container.dart' as di;
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Setup dependency injection
+  await di.init();
+
+  // Setup system UI overlay style
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.light,
+    ),
+  );
+
+  // Set preferred orientations
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  runApp(const WeatherApp());
 }

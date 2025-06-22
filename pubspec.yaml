@@ -48,8 +48,3 @@ flutter:
   
   assets:
     - assets/icons/
-    
-  fonts:
-    - family: CustomIcons
-      fonts:
-        - asset: assets/icons/weather-sunny.png

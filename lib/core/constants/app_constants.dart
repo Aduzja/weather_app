@@ -1,5 +1,5 @@
 class AppConstants {
-  static const String appName = 'WeatherWise';
+  static const String appName = 'Weather App';
   static const String defaultCity = 'Warsaw';
   static const int splashDuration = 3;
   static const int animationDuration = 300;
