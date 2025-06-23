@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../injection_container.dart';
-import '../bloc/weather_bloc.dart';
-import '../bloc/weather_event.dart';
-import '../widgets/gradient_background.dart';
+import 'package:weather_app/features/weather/presentation/bloc/weather_bloc.dart';
+import 'package:weather_app/features/weather/presentation/bloc/weather_event.dart';
+import 'package:weather_app/features/weather/presentation/widgets/gradient_background.dart';
+import 'package:weather_app/injection_container.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -112,9 +112,7 @@ class _SearchPageState extends State<SearchPage> {
             style: const TextStyle(color: Colors.white),
             decoration: InputDecoration(
               hintText: 'Enter city name...',
-              hintStyle: const TextStyle(
-                color: Color.fromARGB(179, 255, 255, 255),
-              ),
+              hintStyle: const TextStyle(color: Color.fromARGB(179, 255, 255, 255)),
               prefixIcon: const Icon(
                 Icons.search,
                 color: Color.fromARGB(179, 255, 255, 255),
@@ -145,7 +143,11 @@ class _SearchPageState extends State<SearchPage> {
       children: [
         const Text(
           'Popular Cities',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(230, 255, 255, 255)),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(230, 255, 255, 255),
+          ),
         ),
         const SizedBox(height: 16),
         Expanded(

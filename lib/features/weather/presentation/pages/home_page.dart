@@ -1,14 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../config/routes/app_routes.dart';
-import '../../../../core/constants/app_constants.dart';
-import '../../../../injection_container.dart';
-import '../bloc/weather_bloc.dart';
-import '../bloc/weather_event.dart';
-import '../bloc/weather_state.dart';
-import '../widgets/gradient_background.dart';
-import '../widgets/weather_card.dart';
+import 'package:weather_app/config/routes/app_routes.dart';
+import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/features/weather/presentation/bloc/weather_bloc.dart';
+import 'package:weather_app/features/weather/presentation/bloc/weather_event.dart';
+import 'package:weather_app/features/weather/presentation/bloc/weather_state.dart';
+import 'package:weather_app/features/weather/presentation/widgets/gradient_background.dart';
+import 'package:weather_app/features/weather/presentation/widgets/weather_card.dart';
+import 'package:weather_app/injection_container.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<WeatherBloc>()..add(const GetWeatherForCity(AppConstants.defaultCity)),
+      create: (_) => sl<WeatherBloc>()..add(const GetWeatherForCurrentLocation()),
       child: const HomeView(),
     );
   }
@@ -95,7 +95,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 child: const Text(
-                  'Weather App',
+                  'WeatherWise',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -107,6 +107,12 @@ class HomeView extends StatelessWidget {
           ),
           Row(
             children: [
+              _buildGlassButton(
+                context,
+                Icons.my_location,
+                () => context.read<WeatherBloc>().add(const GetWeatherForCurrentLocation()),
+              ),
+              const SizedBox(width: 12),
               _buildGlassButton(
                 context,
                 Icons.search,
