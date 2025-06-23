@@ -8,17 +8,13 @@ import 'package:weather_app/features/weather/presentation/bloc/weather_event.dar
 import 'package:weather_app/features/weather/presentation/bloc/weather_state.dart';
 import 'package:weather_app/features/weather/presentation/widgets/gradient_background.dart';
 import 'package:weather_app/features/weather/presentation/widgets/weather_card.dart';
-import 'package:weather_app/injection_container.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => sl<WeatherBloc>()..add(const GetWeatherForCurrentLocation()),
-      child: const HomeView(),
-    );
+    return const HomeView();
   }
 }
 
@@ -89,9 +85,9 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: const Color.fromARGB(51, 255, 255, 255),
+                  color: const Color.fromARGB(51, 255, 255, 255), 
                   border: Border.all(
-                    color: const Color.fromARGB(77, 255, 255, 255),
+                    color: const Color.fromARGB(77, 255, 255, 255), 
                   ),
                 ),
                 child: const Text(
@@ -142,9 +138,9 @@ class HomeView extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: const Color.fromARGB(51, 255, 255, 255),
+              color: const Color.fromARGB(51, 255, 255, 255), 
               border: Border.all(
-                color: const Color.fromARGB(77, 255, 255, 255),
+                color: const Color.fromARGB(77, 255, 255, 255), 
               ),
             ),
             child: Icon(
@@ -171,9 +167,9 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(51, 255, 255, 255),
+                  color: const Color.fromARGB(51, 255, 255, 255), 
                   border: Border.all(
-                    color: const Color.fromARGB(77, 255, 255, 255),
+                    color: const Color.fromARGB(77, 255, 255, 255), 
                   ),
                 ),
                 child: const Column(
@@ -213,9 +209,9 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(51, 255, 255, 255),
+                  color: const Color.fromARGB(51, 255, 255, 255), 
                   border: Border.all(
-                    color: const Color.fromARGB(77, 255, 255, 255),
+                    color: const Color.fromARGB(77, 255, 255, 255), 
                   ),
                 ),
                 child: Column(
@@ -238,7 +234,7 @@ class HomeView extends StatelessWidget {
                     Text(
                       state.message,
                       style: const TextStyle(
-                        color: Color.fromARGB(204, 255, 255, 255),
+                        color: Color.fromARGB(204, 255, 255, 255), 
                         fontSize: 14,
                       ),
                       textAlign: TextAlign.center,
@@ -249,7 +245,7 @@ class HomeView extends StatelessWidget {
                             const GetWeatherForCity(AppConstants.defaultCity),
                           ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(51, 255, 255, 255),
+                        backgroundColor: const Color.fromARGB(51, 255, 255, 255), 
                         foregroundColor: Colors.white,
                         elevation: 0,
                       ),
