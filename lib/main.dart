@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app.dart';
 import 'injection_container.dart' as di;
+import 'features/weather/presentation/bloc/weather_bloc.dart';
+import 'features/weather/presentation/bloc/weather_event.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Setup dependency injection
   await di.init();
 
-  // Setup system UI overlay style
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -19,11 +20,15 @@ void main() async {
     ),
   );
 
-  // Set preferred orientations
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(const WeatherApp());
+  runApp(
+    BlocProvider(
+      create: (_) => di.sl<WeatherBloc>()..add(const GetWeatherForCurrentLocation()),
+      child: const WeatherApp(),
+    ),
+  );
 }

@@ -27,6 +27,10 @@ dependencies:
   dartz: ^0.10.1
   internet_connection_checker: ^1.0.0+1
   
+  # Location
+  geolocator: ^10.1.0
+  permission_handler: ^11.0.1
+  
   # Local Storage
   shared_preferences: ^2.2.0
   
