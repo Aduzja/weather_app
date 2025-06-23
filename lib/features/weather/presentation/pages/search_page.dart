@@ -68,9 +68,9 @@ class _SearchPageState extends State<SearchPage> {
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: Colors.white.withValues(alpha: 51),
+                  color: const Color.fromARGB(51, 255, 255, 255),
                   border: Border.all(
-                    color: Colors.white.withValues(alpha: 76),
+                    color: const Color.fromARGB(77, 255, 255, 255),
                   ),
                 ),
                 child: const Icon(
@@ -102,9 +102,9 @@ class _SearchPageState extends State<SearchPage> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.white.withValues(alpha: 51),
+            color: const Color.fromARGB(51, 255, 255, 255),
             border: Border.all(
-              color: Colors.white.withValues(alpha: 76),
+              color: const Color.fromARGB(77, 255, 255, 255),
             ),
           ),
           child: TextField(
@@ -112,16 +112,18 @@ class _SearchPageState extends State<SearchPage> {
             style: const TextStyle(color: Colors.white),
             decoration: InputDecoration(
               hintText: 'Enter city name...',
-              hintStyle: TextStyle(color: Colors.white.withValues(alpha: 179)),
-              prefixIcon: Icon(
+              hintStyle: const TextStyle(
+                color: Color.fromARGB(179, 255, 255, 255),
+              ),
+              prefixIcon: const Icon(
                 Icons.search,
-                color: Colors.white.withValues(alpha: 179),
+                color: Color.fromARGB(179, 255, 255, 255),
               ),
               suffixIcon: IconButton(
                 onPressed: _searchWeather,
-                icon: Icon(
+                icon: const Icon(
                   Icons.send,
-                  color: Colors.white.withValues(alpha: 230),
+                  color: Color.fromARGB(230, 255, 255, 255),
                 ),
               ),
               border: InputBorder.none,
@@ -141,13 +143,9 @@ class _SearchPageState extends State<SearchPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Popular Cities',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.white.withValues(alpha: 230),
-          ),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(230, 255, 255, 255)),
         ),
         const SizedBox(height: 16),
         Expanded(
@@ -170,9 +168,9 @@ class _SearchPageState extends State<SearchPage> {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: Colors.white.withValues(alpha: 38),
+                        color: const Color.fromARGB(38, 255, 255, 255),
                         border: Border.all(
-                          color: Colors.white.withValues(alpha: 76),
+                          color: const Color.fromARGB(77, 255, 255, 255),
                         ),
                       ),
                       child: Center(

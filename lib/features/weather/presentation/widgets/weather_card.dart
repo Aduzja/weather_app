@@ -25,15 +25,15 @@ class WeatherCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               border: Border.all(
-                color: Colors.white.withValues(alpha: 51),
+                color: const Color.fromARGB(51, 255, 255, 255),
                 width: 1.5,
               ),
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Colors.white.withValues(alpha: 64),
-                  Colors.white.withValues(alpha: 26),
+                  Color.fromARGB(64, 255, 255, 255),
+                  Color.fromARGB(26, 255, 255, 255),
                 ],
               ),
             ),
@@ -69,9 +69,9 @@ class WeatherCard extends StatelessWidget {
             ),
             Text(
               DateFormatter.formatFullDate(weather.dateTime),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
-                color: Colors.white.withValues(alpha: 204),
+                color: Color.fromARGB(204, 255, 255, 255),
               ),
             ),
           ],
@@ -80,7 +80,7 @@ class WeatherCard extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Colors.white.withValues(alpha: 51),
+            color: const Color.fromARGB(51, 255, 255, 255),
           ),
           child: Text(
             WeatherUtils.getWeatherIcon(weather.iconCode),
@@ -105,18 +105,18 @@ class WeatherCard extends StatelessWidget {
         ),
         Text(
           WeatherUtils.capitalizeFirst(weather.description),
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
-            color: Colors.white.withValues(alpha: 230),
+            color: Color.fromARGB(230, 255, 255, 255),
             fontWeight: FontWeight.w500,
           ),
         ),
         const SizedBox(height: 8),
         Text(
           'Feels like ${WeatherUtils.getTemperatureString(weather.feelsLike)}',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
-            color: Colors.white.withValues(alpha: 179),
+            color: Color.fromARGB(179, 255, 255, 255),
           ),
         ),
       ],
@@ -128,7 +128,7 @@ class WeatherCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.white.withValues(alpha: 38),
+        color: const Color.fromARGB(38, 255, 255, 255),
       ),
       child: Column(
         children: [
@@ -196,9 +196,9 @@ class WeatherCard extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
-            color: Colors.white.withValues(alpha: 179),
+            color: Color.fromARGB(179, 255, 255, 255),
           ),
         ),
       ],

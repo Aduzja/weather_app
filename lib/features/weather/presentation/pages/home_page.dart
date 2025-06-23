@@ -89,9 +89,9 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: Colors.white.withValues(alpha: 51),
+                  color: const Color.fromARGB(51, 255, 255, 255),
                   border: Border.all(
-                    color: Colors.white.withValues(alpha: 76),
+                    color: const Color.fromARGB(77, 255, 255, 255),
                   ),
                 ),
                 child: const Text(
@@ -136,9 +136,9 @@ class HomeView extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Colors.white.withValues(alpha: 51),
+              color: const Color.fromARGB(51, 255, 255, 255),
               border: Border.all(
-                color: Colors.white.withValues(alpha: 76),
+                color: const Color.fromARGB(77, 255, 255, 255),
               ),
             ),
             child: Icon(
@@ -165,9 +165,9 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Colors.white.withValues(alpha: 51),
+                  color: const Color.fromARGB(51, 255, 255, 255),
                   border: Border.all(
-                    color: Colors.white.withValues(alpha: 76),
+                    color: const Color.fromARGB(77, 255, 255, 255),
                   ),
                 ),
                 child: const Column(
@@ -207,9 +207,9 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Colors.white.withValues(alpha: 51),
+                  color: const Color.fromARGB(51, 255, 255, 255),
                   border: Border.all(
-                    color: Colors.white.withValues(alpha: 76),
+                    color: const Color.fromARGB(77, 255, 255, 255),
                   ),
                 ),
                 child: Column(
@@ -231,8 +231,8 @@ class HomeView extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       state.message,
-                      style: TextStyle(
-                        color: Colors.white.withValues(alpha: 204),
+                      style: const TextStyle(
+                        color: Color.fromARGB(204, 255, 255, 255),
                         fontSize: 14,
                       ),
                       textAlign: TextAlign.center,
@@ -243,7 +243,7 @@ class HomeView extends StatelessWidget {
                             const GetWeatherForCity(AppConstants.defaultCity),
                           ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white.withValues(alpha: 51),
+                        backgroundColor: const Color.fromARGB(51, 255, 255, 255),
                         foregroundColor: Colors.white,
                         elevation: 0,
                       ),
