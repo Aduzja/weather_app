@@ -42,3 +42,12 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Environment variables
+.env
+lib/core/constants/api_keys.dart
+
+# Build files
+*.env
+android/app/src/main/res/values/secrets.xml
+ios/Runner/Secrets.plist
