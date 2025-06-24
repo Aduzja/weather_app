@@ -6,6 +6,7 @@ import 'package:weather_app/core/constants/app_constants.dart';
 import 'package:weather_app/features/weather/presentation/bloc/weather_bloc.dart';
 import 'package:weather_app/features/weather/presentation/bloc/weather_event.dart';
 import 'package:weather_app/features/weather/presentation/bloc/weather_state.dart';
+import 'package:weather_app/features/weather/presentation/widgets/detailed_weather_card.dart';
 import 'package:weather_app/features/weather/presentation/widgets/gradient_background.dart';
 import 'package:weather_app/features/weather/presentation/widgets/weather_card.dart';
 
@@ -48,7 +49,13 @@ class HomeView extends StatelessWidget {
           _buildAppBar(context),
           Expanded(
             child: SingleChildScrollView(
-              child: WeatherCard(weather: state.weather),
+              child: Column(
+                children: [
+                  WeatherCard(weather: state.weather),
+                  DetailedWeatherCard(weather: state.weather),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           ),
         ],
@@ -85,9 +92,9 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: const Color.fromARGB(51, 255, 255, 255), 
+                  color: const Color.fromARGB(51, 255, 255, 255), // 0.2 opacity
                   border: Border.all(
-                    color: const Color.fromARGB(77, 255, 255, 255), 
+                    color: const Color.fromARGB(77, 255, 255, 255), // 0.3 opacity
                   ),
                 ),
                 child: const Text(
@@ -138,9 +145,9 @@ class HomeView extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: const Color.fromARGB(51, 255, 255, 255), 
+              color: const Color.fromARGB(51, 255, 255, 255), // 0.2 opacity
               border: Border.all(
-                color: const Color.fromARGB(77, 255, 255, 255), 
+                color: const Color.fromARGB(77, 255, 255, 255), // 0.3 opacity
               ),
             ),
             child: Icon(
@@ -167,9 +174,9 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(51, 255, 255, 255), 
+                  color: const Color.fromARGB(51, 255, 255, 255), // 0.2 opacity
                   border: Border.all(
-                    color: const Color.fromARGB(77, 255, 255, 255), 
+                    color: const Color.fromARGB(77, 255, 255, 255), // 0.3 opacity
                   ),
                 ),
                 child: const Column(
@@ -209,9 +216,9 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(51, 255, 255, 255), 
+                  color: const Color.fromARGB(51, 255, 255, 255), // 0.2 opacity
                   border: Border.all(
-                    color: const Color.fromARGB(77, 255, 255, 255), 
+                    color: const Color.fromARGB(77, 255, 255, 255), // 0.3 opacity
                   ),
                 ),
                 child: Column(
@@ -234,7 +241,7 @@ class HomeView extends StatelessWidget {
                     Text(
                       state.message,
                       style: const TextStyle(
-                        color: Color.fromARGB(204, 255, 255, 255), 
+                        color: Color.fromARGB(204, 255, 255, 255), // 0.8 opacity
                         fontSize: 14,
                       ),
                       textAlign: TextAlign.center,
@@ -245,7 +252,7 @@ class HomeView extends StatelessWidget {
                             const GetWeatherForCity(AppConstants.defaultCity),
                           ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(51, 255, 255, 255), 
+                        backgroundColor: const Color.fromARGB(51, 255, 255, 255), // 0.2 opacity
                         foregroundColor: Colors.white,
                         elevation: 0,
                       ),
