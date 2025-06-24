@@ -2,10 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/config/routes/app_routes.dart';
-import 'package:weather_app/core/constants/app_constants.dart';
 import 'package:weather_app/features/weather/presentation/bloc/weather_bloc.dart';
 import 'package:weather_app/features/weather/presentation/bloc/weather_event.dart';
 import 'package:weather_app/features/weather/presentation/bloc/weather_state.dart';
+import 'package:weather_app/features/weather/presentation/widgets/detailed_weather_card.dart';
 import 'package:weather_app/features/weather/presentation/widgets/gradient_background.dart';
 import 'package:weather_app/features/weather/presentation/widgets/weather_card.dart';
 
@@ -48,7 +48,13 @@ class HomeView extends StatelessWidget {
           _buildAppBar(context),
           Expanded(
             child: SingleChildScrollView(
-              child: WeatherCard(weather: state.weather),
+              child: Column(
+                children: [
+                  WeatherCard(weather: state.weather),
+                  DetailedWeatherCard(weather: state.weather),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           ),
         ],
@@ -174,17 +180,29 @@ class HomeView extends StatelessWidget {
                 ),
                 child: const Column(
                   children: [
-                    CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: 3,
+                    SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 4,
+                      ),
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(height: 20),
                     Text(
                       'Getting weather data...',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'This may take a few moments',
+                      style: TextStyle(
+                        color: Color.fromARGB(179, 255, 255, 255), 
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -216,21 +234,28 @@ class HomeView extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const Icon(
-                      Icons.error_outline,
-                      color: Colors.white,
-                      size: 48,
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color:  Color.fromARGB(77, 255, 255, 255), 
+                      ),
+                      child: const Icon(
+                        Icons.cloud_off,
+                        color: Colors.white,
+                        size: 48,
+                      ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 20),
                     const Text(
-                      'Oops! Something went wrong',
+                      'Unable to get weather data',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
                     Text(
                       state.message,
                       style: const TextStyle(
@@ -239,17 +264,21 @@ class HomeView extends StatelessWidget {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () => context.read<WeatherBloc>().add(
-                            const GetWeatherForCity(AppConstants.defaultCity),
-                          ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(51, 255, 255, 255), 
-                        foregroundColor: Colors.white,
-                        elevation: 0,
-                      ),
-                      child: const Text('Try Again'),
+                    const SizedBox(height: 24),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildRetryButton(
+                          'Try Again',
+                          Icons.refresh,
+                          () => context.read<WeatherBloc>().add(const RefreshWeather()),
+                        ),
+                        _buildRetryButton(
+                          'Use Location',
+                          Icons.my_location,
+                          () => context.read<WeatherBloc>().add(const GetWeatherForCurrentLocation()),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -262,4 +291,27 @@ class HomeView extends StatelessWidget {
 
     return const SizedBox.shrink();
   }
+
+  Widget _buildRetryButton(String text, IconData icon, VoidCallback onPressed) {
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 18),
+      label: Text(text),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromARGB(51, 255, 255, 255), 
+        foregroundColor: Colors.white,
+        elevation: 0,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: const BorderSide(
+            color: Color.fromARGB(77, 255, 255, 255), 
+          ),
+        ),
+      ),
+    );
+  }
 }
+
+
+

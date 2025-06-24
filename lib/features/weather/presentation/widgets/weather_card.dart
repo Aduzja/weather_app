@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../../../../core/utils/weather_utils.dart';
-import '../../../../core/utils/date_formatter.dart';
-import '../../domain/entities/weather.dart';
+import 'package:weather_app/core/utils/date_formatter.dart';
+import 'package:weather_app/core/utils/weather_utils.dart';
+import 'package:weather_app/features/weather/domain/entities/weather.dart';
 
 class WeatherCard extends StatelessWidget {
   final Weather weather;

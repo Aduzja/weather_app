@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/errors/failures.dart';
 import 'package:weather_app/core/usecases/usecase.dart';
@@ -21,6 +23,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   String? _lastCityName;
   bool _isLocationBased = false;
+  Timer? _timeoutTimer;
 
   void _onGetWeatherForCity(
     GetWeatherForCity event,
@@ -30,14 +33,31 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     _lastCityName = event.cityName;
     _isLocationBased = false;
 
-    final failureOrWeather = await getCurrentWeather(
-      WeatherParams(cityName: event.cityName),
-    );
+    _startTimeoutTimer(emit);
 
-    failureOrWeather.fold(
-      (failure) => emit(WeatherError(_mapFailureToMessage(failure))),
-      (weather) => emit(WeatherLoaded(weather)),
-    );
+    try {
+      final failureOrWeather = await getCurrentWeather(
+        WeatherParams(cityName: event.cityName),
+      ).timeout(
+        const Duration(seconds: 15),
+        onTimeout: () {
+          throw TimeoutException('Request timed out', const Duration(seconds: 15));
+        },
+      );
+
+      _cancelTimeoutTimer();
+
+      failureOrWeather.fold(
+        (failure) => emit(WeatherError(_mapFailureToMessage(failure))),
+        (weather) => emit(WeatherLoaded(weather)),
+      );
+    } on TimeoutException {
+      _cancelTimeoutTimer();
+      emit(const WeatherError('Request timed out. Please check your internet connection and try again.'));
+    } catch (e) {
+      _cancelTimeoutTimer();
+      emit(WeatherError('An unexpected error occurred: ${e.toString()}'));
+    }
   }
 
   void _onGetWeatherForCurrentLocation(
@@ -47,12 +67,29 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     emit(WeatherLoading());
     _isLocationBased = true;
 
-    final failureOrWeather = await getWeatherByLocation(const NoParams());
+    _startTimeoutTimer(emit);
 
-    failureOrWeather.fold(
-      (failure) => emit(WeatherError(_mapFailureToMessage(failure))),
-      (weather) => emit(WeatherLoaded(weather)),
-    );
+    try {
+      final failureOrWeather = await getWeatherByLocation(const NoParams()).timeout(
+        const Duration(seconds: 20),
+        onTimeout: () {
+          throw TimeoutException('Location request timed out', const Duration(seconds: 20));
+        },
+      );
+
+      _cancelTimeoutTimer();
+
+      failureOrWeather.fold(
+        (failure) => emit(WeatherError(_mapFailureToMessage(failure))),
+        (weather) => emit(WeatherLoaded(weather)),
+      );
+    } on TimeoutException {
+      _cancelTimeoutTimer();
+      emit(const WeatherError('Location request timed out. Please try again or search for a city manually.'));
+    } catch (e) {
+      _cancelTimeoutTimer();
+      emit(WeatherError('Failed to get location: ${e.toString()}'));
+    }
   }
 
   void _onRefreshWeather(
@@ -66,16 +103,36 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     }
   }
 
+  void _startTimeoutTimer(Emitter<WeatherState> emit) {
+    _cancelTimeoutTimer();
+    _timeoutTimer = Timer(const Duration(seconds: 30), () {
+      if (!emit.isDone) {
+        emit(const WeatherError('Request is taking too long. Please check your internet connection.'));
+      }
+    });
+  }
+
+  void _cancelTimeoutTimer() {
+    _timeoutTimer?.cancel();
+    _timeoutTimer = null;
+  }
+
   String _mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return 'Server Error - Please try again';
+        return 'Server Error - Please try again later';
       case CacheFailure:
-        return 'No cached data available';
+        return 'No cached data available. Please check your internet connection.';
       case NetworkFailure:
-        return 'No internet connection';
+        return 'No internet connection. Please check your network settings.';
       default:
-        return 'Something went wrong';
+        return 'Something went wrong. Please try again.';
     }
+  }
+
+  @override
+  Future<void> close() {
+    _cancelTimeoutTimer();
+    return super.close();
   }
 }
