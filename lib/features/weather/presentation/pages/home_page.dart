@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/config/routes/app_routes.dart';
-import 'package:weather_app/core/constants/app_constants.dart';
 import 'package:weather_app/features/weather/presentation/bloc/weather_bloc.dart';
 import 'package:weather_app/features/weather/presentation/bloc/weather_event.dart';
 import 'package:weather_app/features/weather/presentation/bloc/weather_state.dart';
@@ -92,9 +91,9 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: const Color.fromARGB(51, 255, 255, 255), // 0.2 opacity
+                  color: const Color.fromARGB(51, 255, 255, 255), 
                   border: Border.all(
-                    color: const Color.fromARGB(77, 255, 255, 255), // 0.3 opacity
+                    color: const Color.fromARGB(77, 255, 255, 255), 
                   ),
                 ),
                 child: const Text(
@@ -145,9 +144,9 @@ class HomeView extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: const Color.fromARGB(51, 255, 255, 255), // 0.2 opacity
+              color: const Color.fromARGB(51, 255, 255, 255), 
               border: Border.all(
-                color: const Color.fromARGB(77, 255, 255, 255), // 0.3 opacity
+                color: const Color.fromARGB(77, 255, 255, 255), 
               ),
             ),
             child: Icon(
@@ -174,24 +173,36 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(51, 255, 255, 255), // 0.2 opacity
+                  color: const Color.fromARGB(51, 255, 255, 255), 
                   border: Border.all(
-                    color: const Color.fromARGB(77, 255, 255, 255), // 0.3 opacity
+                    color: const Color.fromARGB(77, 255, 255, 255), 
                   ),
                 ),
                 child: const Column(
                   children: [
-                    CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: 3,
+                    SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 4,
+                      ),
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(height: 20),
                     Text(
                       'Getting weather data...',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'This may take a few moments',
+                      style: TextStyle(
+                        color: Color.fromARGB(179, 255, 255, 255), 
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -216,47 +227,58 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(51, 255, 255, 255), // 0.2 opacity
+                  color: const Color.fromARGB(51, 255, 255, 255), 
                   border: Border.all(
-                    color: const Color.fromARGB(77, 255, 255, 255), // 0.3 opacity
+                    color: const Color.fromARGB(77, 255, 255, 255), 
                   ),
                 ),
                 child: Column(
                   children: [
-                    const Icon(
-                      Icons.error_outline,
-                      color: Colors.white,
-                      size: 48,
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color:  Color.fromARGB(77, 255, 255, 255), 
+                      ),
+                      child: const Icon(
+                        Icons.cloud_off,
+                        color: Colors.white,
+                        size: 48,
+                      ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 20),
                     const Text(
-                      'Oops! Something went wrong',
+                      'Unable to get weather data',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
                     Text(
                       state.message,
                       style: const TextStyle(
-                        color: Color.fromARGB(204, 255, 255, 255), // 0.8 opacity
+                        color: Color.fromARGB(204, 255, 255, 255), 
                         fontSize: 14,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () => context.read<WeatherBloc>().add(
-                            const GetWeatherForCity(AppConstants.defaultCity),
-                          ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(51, 255, 255, 255), // 0.2 opacity
-                        foregroundColor: Colors.white,
-                        elevation: 0,
-                      ),
-                      child: const Text('Try Again'),
+                    const SizedBox(height: 24),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildRetryButton(
+                          'Try Again',
+                          Icons.refresh,
+                          () => context.read<WeatherBloc>().add(const RefreshWeather()),
+                        ),
+                        _buildRetryButton(
+                          'Use Location',
+                          Icons.my_location,
+                          () => context.read<WeatherBloc>().add(const GetWeatherForCurrentLocation()),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -269,4 +291,27 @@ class HomeView extends StatelessWidget {
 
     return const SizedBox.shrink();
   }
+
+  Widget _buildRetryButton(String text, IconData icon, VoidCallback onPressed) {
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 18),
+      label: Text(text),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromARGB(51, 255, 255, 255), 
+        foregroundColor: Colors.white,
+        elevation: 0,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: const BorderSide(
+            color: Color.fromARGB(77, 255, 255, 255), 
+          ),
+        ),
+      ),
+    );
+  }
 }
+
+
+
